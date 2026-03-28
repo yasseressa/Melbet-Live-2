@@ -25,6 +25,12 @@ class Settings(BaseSettings):
     log_json: bool = False
     sports_provider: str = "mock"
     news_provider: str = "mock"
+    football_data_base_url: str = "https://api.football-data.org/v4"
+    football_data_api_key: str = ""
+    football_data_competitions: str = "PL,CL,SA,PD,BL1,FL1"
+    gnews_base_url: str = "https://gnews.io/api/v4"
+    gnews_api_key: str = ""
+    gnews_max_results: int = 10
     cache_default_ttl_seconds: int = 300
     cache_redirect_config_ttl_seconds: int = 30
 
@@ -49,6 +55,11 @@ class Settings(BaseSettings):
             f"postgresql+psycopg://{self.database_user}:{self.database_password}"
             f"@{self.database_host}:{self.database_port}/{self.database_name}"
         )
+
+    @computed_field
+    @property
+    def football_data_competition_codes(self) -> list[str]:
+        return [code.strip().upper() for code in self.football_data_competitions.split(",") if code.strip()]
 
 
 @lru_cache

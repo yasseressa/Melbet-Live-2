@@ -32,28 +32,28 @@ export function StreamsPage({ locale, messages }: { locale: Locale; messages: Me
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-500">{messages.admin}</p>
-          <h1 className="text-4xl font-black text-pitch-900">{messages.streamLinks}</h1>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#f4bb41]">{messages.admin}</p>
+          <h1 className="text-4xl font-black text-[#f7f0e2]">{messages.streamLinks}</h1>
         </div>
         <Link href={`/${locale}/admin/streams/new`}><Button>{messages.createStream}</Button></Link>
       </div>
       <Card className="overflow-hidden p-0">
-        {loading ? <div className="p-6">{messages.loading}</div> : null}
-        {error ? <div className="p-6 text-red-700">{error}</div> : null}
+        {loading ? <div className="p-6 text-[#f4bb41]">{messages.loading}</div> : null}
+        {error ? <div className="p-6 text-[#f5d7c9]">{error}</div> : null}
         {!loading && !error ? (
-          <div className="divide-y divide-pitch-100">
+          <div className="divide-y divide-[#3a2b14]">
             {items.map((item) => (
               <div key={item.external_match_id} className="flex flex-col gap-3 p-5 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <p className="font-bold text-pitch-900">{item.external_match_id}</p>
-                  <p className="text-sm text-pitch-700">{item.stream_type.toUpperCase()} - {item.show_stream ? "Visible" : "Hidden"}</p>
+                  <p className="font-bold text-[#f7f0e2]">{item.external_match_id}</p>
+                  <p className="text-sm text-[#ccb992]">{item.stream_type.toUpperCase()} - {item.show_stream ? "Visible" : "Hidden"}</p>
                 </div>
                 <Link href={`/${locale}/admin/streams/${encodeURIComponent(item.external_match_id)}/edit`}>
                   <Button variant="ghost">{messages.edit}</Button>
                 </Link>
               </div>
             ))}
-            {items.length === 0 ? <div className="p-6 text-pitch-700">{messages.empty}</div> : null}
+            {items.length === 0 ? <div className="p-6 text-[#ccb992]">{messages.empty}</div> : null}
           </div>
         ) : null}
       </Card>

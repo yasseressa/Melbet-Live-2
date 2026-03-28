@@ -12,15 +12,15 @@ export function MatchDetailsView({ locale, messages, match }: { locale: Locale; 
     <div className="space-y-8">
       <Card className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
         <div className="space-y-4">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-500">{match.competition_name}</p>
-          <h1 className="text-4xl font-black text-pitch-900">{match.home_team} vs {match.away_team}</h1>
-          <p className="text-sm text-pitch-700">{formatDate(match.start_time, locale)}</p>
-          {match.description ? <p className="text-base leading-7 text-pitch-700">{match.description}</p> : null}
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#f4bb41]">{match.competition_name}</p>
+          <h1 className="text-4xl font-black text-[#f7f0e2]">{match.home_team} vs {match.away_team}</h1>
+          <p className="text-sm text-[#ccb992]">{formatDate(match.start_time, locale)}</p>
+          {match.description ? <p className="text-base leading-7 text-[#efe5d3]">{match.description}</p> : null}
         </div>
-        <div className="rounded-[1.5rem] bg-pitch-900 p-5 text-white shadow-card">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">{messages.matchCenter}</p>
+        <div className="rounded-[1.5rem] border border-[#4b3818] bg-[linear-gradient(180deg,_#1d1711,_#121212)] p-5 text-[#f7f0e2] shadow-card">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f4bb41]">{messages.matchCenter}</p>
           <p className="mt-3 text-lg font-bold">{match.venue || match.status}</p>
-          <Link href={`/${locale}`} className="mt-6 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-pitch-900" data-disable-global-redirect>
+          <Link href={`/${locale}`} className="mt-6 inline-flex rounded-full bg-[#f4bb41] px-4 py-2 text-sm font-semibold text-[#17120d]" data-disable-global-redirect>
             {messages.backHome}
           </Link>
         </div>

@@ -7,21 +7,21 @@ export function AdminDashboard({ locale, messages }: { locale: Locale; messages:
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-500">{messages.admin}</p>
-        <h1 className="text-4xl font-black text-pitch-900">{messages.adminOverview}</h1>
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#f4bb41]">{messages.admin}</p>
+        <h1 className="text-4xl font-black text-[#f7f0e2]">{messages.adminOverview}</h1>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="space-y-3">
-          <h2 className="text-2xl font-black text-pitch-900">{messages.streamLinks}</h2>
-          <p className="text-sm text-pitch-700">{messages.manageStreams}</p>
-          <Link href={`/${locale}/admin/streams`} className="inline-flex rounded-full bg-pitch-600 px-4 py-2 text-sm font-semibold text-white">
+          <h2 className="text-2xl font-black text-[#f7f0e2]">{messages.streamLinks}</h2>
+          <p className="text-sm text-[#ccb992]">{messages.manageStreams}</p>
+          <Link href={`/${locale}/admin/streams`} className="inline-flex rounded-full bg-[#f4bb41] px-4 py-2 text-sm font-semibold text-[#17120d]">
             {messages.streamLinks}
           </Link>
         </Card>
         <Card className="space-y-3">
-          <h2 className="text-2xl font-black text-pitch-900">{messages.redirects}</h2>
-          <p className="text-sm text-pitch-700">{messages.manageRedirects}</p>
-          <Link href={`/${locale}/admin/redirects`} className="inline-flex rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-pitch-900">
+          <h2 className="text-2xl font-black text-[#f7f0e2]">{messages.redirects}</h2>
+          <p className="text-sm text-[#ccb992]">{messages.manageRedirects}</p>
+          <Link href={`/${locale}/admin/redirects`} className="inline-flex rounded-full bg-[#2a2117] px-4 py-2 text-sm font-semibold text-[#f5efe3]">
             {messages.redirects}
           </Link>
         </Card>

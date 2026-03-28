@@ -6,12 +6,12 @@ import type { StreamLink } from "@/lib/api/types";
 
 export function MatchPlayer({ stream, canShowPlayer, messages }: { stream?: StreamLink | null; canShowPlayer: boolean; messages: Messages }) {
   if (!canShowPlayer || !stream) {
-    return <div className="rounded-[1.5rem] border border-dashed border-pitch-100 bg-white/60 p-6 text-pitch-700">{messages.noStreamAvailable}</div>;
+    return <div className="rounded-[1.5rem] border border-dashed border-[#5a431d] bg-[#17120d] p-6 text-[#d1bf99]">{messages.noStreamAvailable}</div>;
   }
 
   if (stream.stream_type === "iframe" || stream.stream_type === "embed") {
     return (
-      <div className="overflow-hidden rounded-[1.5rem] border border-pitch-100 bg-pitch-900 shadow-card">
+      <div className="overflow-hidden rounded-[1.5rem] border border-[#4b3818] bg-[#0d0d0d] shadow-card">
         <iframe src={stream.stream_url} className="aspect-video w-full" allowFullScreen title="Match Player" />
       </div>
     );
@@ -19,7 +19,7 @@ export function MatchPlayer({ stream, canShowPlayer, messages }: { stream?: Stre
 
   if (stream.stream_type === "external") {
     return (
-      <div className="rounded-[1.5rem] border border-pitch-100 bg-white/70 p-6 shadow-card">
+      <div className="rounded-[1.5rem] border border-[#4b3818] bg-[#17120d] p-6 shadow-card">
         <Link href={stream.stream_url} target="_blank" rel="noreferrer" data-disable-global-redirect>
           <Button>{messages.watchMatch}</Button>
         </Link>
@@ -28,7 +28,7 @@ export function MatchPlayer({ stream, canShowPlayer, messages }: { stream?: Stre
   }
 
   return (
-    <div className="overflow-hidden rounded-[1.5rem] border border-pitch-100 bg-pitch-900 shadow-card">
+    <div className="overflow-hidden rounded-[1.5rem] border border-[#4b3818] bg-[#0d0d0d] shadow-card">
       <video src={stream.stream_url} controls className="aspect-video w-full" />
     </div>
   );

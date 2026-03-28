@@ -36,13 +36,13 @@ export function AdminLoginForm({ locale, messages }: { locale: Locale; messages:
     <div className="mx-auto flex min-h-screen max-w-md items-center px-4 py-12">
       <Card className="w-full space-y-6">
         <div className="space-y-2">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-500">{messages.admin}</p>
-          <h1 className="text-3xl font-black text-pitch-900">{messages.loginTitle}</h1>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#f4bb41]">{messages.admin}</p>
+          <h1 className="text-3xl font-black text-[#f7f0e2]">{messages.loginTitle}</h1>
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <Input value={login} onChange={(event) => setLogin(event.target.value)} placeholder={messages.usernameOrEmail} required data-disable-global-redirect />
           <Input value={password} onChange={(event) => setPassword(event.target.value)} placeholder={messages.password} required type="password" data-disable-global-redirect />
-          {error ? <p className="text-sm text-red-700">{error}</p> : null}
+          {error ? <p className="text-sm text-[#f5d7c9]">{error}</p> : null}
           <Button className="w-full" disabled={loading} type="submit">{loading ? messages.loading : messages.login}</Button>
         </form>
       </Card>

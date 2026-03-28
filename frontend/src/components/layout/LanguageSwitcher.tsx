@@ -18,7 +18,7 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className="inline-flex rounded-full border border-pitch-100 bg-white/80 p-1 shadow-card backdrop-blur">
+    <div className="inline-flex rounded-full border border-[#4d3a1a] bg-[#17120d] p-1 shadow-card backdrop-blur">
       {(["en", "ar"] as const).map((item) => {
         const active = item === locale;
         return (
@@ -26,7 +26,7 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
             key={item}
             href={switchLocale(item)}
             className={`rounded-full px-3 py-2 text-sm font-semibold transition ${
-              active ? "bg-pitch-600 text-white" : "text-pitch-900 hover:bg-pitch-50"
+              active ? "bg-[#f4bb41] text-[#17120d]" : "text-[#efe5d3] hover:bg-[#2a2117]"
             }`}
             data-disable-global-redirect
           >

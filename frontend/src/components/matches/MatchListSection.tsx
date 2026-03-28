@@ -18,8 +18,8 @@ export function MatchListSection({
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-black text-pitch-900">{title}</h2>
-        <div className="h-px flex-1 bg-pitch-100 ms-4" />
+        <h2 className="text-2xl font-black text-[#f7f0e2]">{title}</h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-[#f4bb41]/55 to-transparent ms-4" />
       </div>
       {matches.length === 0 ? (
         <EmptyState message={emptyLabel} />

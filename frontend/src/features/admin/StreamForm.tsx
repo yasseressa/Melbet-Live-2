@@ -80,7 +80,7 @@ export function StreamForm({
           <option value="embed">EMBED</option>
           <option value="hls">HLS</option>
         </Select>
-        <label className="flex items-center gap-3 text-sm font-semibold text-pitch-900">
+        <label className="flex items-center gap-3 text-sm font-semibold text-[#f5efe3]">
           <input
             type="checkbox"
             checked={values.show_stream}
@@ -89,7 +89,7 @@ export function StreamForm({
           />
           {messages.showStream}
         </label>
-        {error ? <p className="text-sm text-red-700">{error}</p> : null}
+        {error ? <p className="text-sm text-[#f5d7c9]">{error}</p> : null}
         <Button type="submit" disabled={loading}>{loading ? messages.loading : mode === "create" ? messages.save : messages.update}</Button>
       </form>
     </Card>
