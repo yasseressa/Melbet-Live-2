@@ -28,7 +28,7 @@ register_exception_handlers(app)
 app.include_router(api_router, prefix=settings.api_v1_prefix)
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root() -> dict[str, str]:
     return {
         "service": settings.app_name,
