@@ -4,7 +4,7 @@ services:
     runtime: docker
     plan: free
     dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerContext: .
     dockerCommand: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
     healthCheckPath: /api/v1/health
     envVars:
@@ -28,7 +28,7 @@ services:
     runtime: docker
     plan: free
     dockerfilePath: ./frontend/Dockerfile
-    dockerContext: ./frontend
+    dockerContext: .
     healthCheckPath: /ar
     envVars:
       - key: INTERNAL_API_BASE_URL
