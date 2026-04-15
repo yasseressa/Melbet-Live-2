@@ -9,8 +9,8 @@ export function BrandLogo({ locale, compact = false }: { locale: Locale; compact
         <ShieldBallIcon compact={compact} />
       </span>
       <span className={`flex flex-col font-black uppercase leading-none ${compact ? "gap-0.5" : "gap-1"}`}>
-        <span className={`tracking-[0.08em] text-white ${compact ? "text-base" : "text-lg sm:text-xl"}`}>Melbet</span>
-        <span className={`tracking-[0.08em] text-[#f1bc26] ${compact ? "text-base" : "text-lg sm:text-xl"}`}>Live</span>
+        <span className={`tracking-[0.08em] text-white ${compact ? "text-base" : "text-lg sm:text-xl"}`}>Goal</span>
+        <span className={`tracking-[0.08em] text-[#f1bc26] ${compact ? "text-base" : "text-lg sm:text-xl"}`}>Stream</span>
       </span>
     </Link>
   );

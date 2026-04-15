@@ -13,7 +13,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_name: str = "Melbet Live API"
+    app_name: str = "Goal Stream API"
     app_env: str = "development"
     app_debug: bool = True
     api_v1_prefix: str = "/api/v1"

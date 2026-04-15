@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n";
 
 export const siteConfig = {
-  name: "Melbet Live",
+  name: "Goal Stream",
   description: "Multilingual football matches and news platform",
   adminStorageKey: "melbet-admin-token",
   redirectStorageKey: "melbet-last-redirect",

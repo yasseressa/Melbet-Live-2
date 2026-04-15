@@ -5,8 +5,8 @@ import "./globals.css";
 import { defaultLocale, getDirection, isLocale } from "@/i18n";
 
 export const metadata: Metadata = {
-  title: "Melbet Live",
-  description: "Bilingual sports platform frontend",
+  title: "Goal Stream",
+  description: "Multilingual football matches and news platform",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
