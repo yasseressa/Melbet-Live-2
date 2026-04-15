@@ -96,10 +96,17 @@ class GNewsAPIClient(NewsAPIClient):
 
     async def _fetch_articles(self, path: str, params: dict[str, object]) -> list[dict]:
         request_params = {**params, "apikey": self.api_key}
-        async with httpx.AsyncClient(base_url=self.base_url, timeout=20.0) as client:
-            response = await client.get(path, params=request_params)
-            response.raise_for_status()
-            payload = response.json()
+        try:
+            async with httpx.AsyncClient(base_url=self.base_url, timeout=20.0) as client:
+                response = await client.get(path, params=request_params)
+                response.raise_for_status()
+                payload = response.json()
+        except httpx.HTTPError:
+            logger.exception(
+                "news_api_request_failed",
+                extra={"provider": "gnews", "path": path, "params": {key: value for key, value in params.items() if key != "apikey"}},
+            )
+            return []
         return list(payload.get("articles", []))
 
     def _map_article(self, payload: dict, tags: list[str]) -> NewsArticleData:

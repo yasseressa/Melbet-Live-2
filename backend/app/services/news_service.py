@@ -23,7 +23,11 @@ class NewsService:
         if cached is not None:
             return cached
 
-        articles = await self.client.get_latest_sports_news(locale)
+        try:
+            articles = await self.client.get_latest_sports_news(locale)
+        except Exception:
+            logger.exception("latest_news_load_failed", extra={"locale": locale})
+            articles = []
         self.cache.set(cache_key, articles, HOME_NEWS_CACHE_TTL_SECONDS)
         logger.info("latest_news_loaded", extra={"locale": locale, "count": len(articles)})
         return articles
@@ -41,12 +45,16 @@ class NewsService:
         if cached is not None:
             return cached
 
-        articles = await self.client.get_related_news(
-            locale=locale,
-            team_names=team_names,
-            competition=competition,
-            match_context=match_context,
-        )
+        try:
+            articles = await self.client.get_related_news(
+                locale=locale,
+                team_names=team_names,
+                competition=competition,
+                match_context=match_context,
+            )
+        except Exception:
+            logger.exception("related_news_load_failed", extra={"match_id": match_id, "locale": locale})
+            articles = []
         self.cache.set(cache_key, articles, RELATED_MATCH_NEWS_CACHE_TTL_SECONDS)
         logger.info("related_news_loaded", extra={"match_id": match_id, "locale": locale, "count": len(articles)})
         return articles
