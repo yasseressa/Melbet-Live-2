@@ -8,6 +8,7 @@ from app.core.config import settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import configure_logging
 from app.services.bootstrap_service import ensure_bootstrap_admin
+from app.services.schema_service import ensure_database_schema
 
 configure_logging()
 
@@ -31,6 +32,7 @@ app.include_router(api_router, prefix=settings.api_v1_prefix)
 
 @app.on_event("startup")
 async def bootstrap_admin_user() -> None:
+    await ensure_database_schema()
     await ensure_bootstrap_admin()
 
 
