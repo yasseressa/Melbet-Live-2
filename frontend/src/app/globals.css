@@ -5,28 +5,36 @@
 :root {
   color-scheme: dark;
   --background: #050505;
-  --foreground: #f4f4f4;
+  --foreground: #f3eee6;
   --surface: #0d0d0d;
   --surface-strong: #111111;
-  --border: #232323;
-  --muted: #a0a0a0;
+  --border: rgba(255, 194, 0, 0.14);
+  --muted: #a7a091;
 }
 
 html {
   background: #050505;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   color: var(--foreground);
   background:
-    radial-gradient(circle at top center, rgba(255, 199, 34, 0.08), transparent 18%),
-    linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
-  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    radial-gradient(circle at top center, rgba(255, 194, 0, 0.14), transparent 16%),
+    radial-gradient(circle at 80% 14%, rgba(255, 194, 0, 0.08), transparent 12%),
+    linear-gradient(180deg, #090909 0%, #050505 100%);
+  font-family: "Arial Narrow", "Franklin Gothic Medium", "Segoe UI", sans-serif;
 }
 
 * {
   border-color: var(--border);
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(255, 194, 0, 0.28);
+  color: #fff6da;
 }
 
 .prose-content p + p {

@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { TopSocialBar } from "@/components/layout/TopSocialBar";
 import type { Locale, Messages } from "@/i18n";
 
 export function LocalePageShell({
@@ -24,10 +23,9 @@ export function LocalePageShell({
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#050505]">
-      <TopSocialBar locale={locale} messages={messages} />
+    <div className="flex min-h-screen flex-col bg-[#040404]">
       <Header locale={locale} messages={messages} />
-      <main className="mx-auto min-h-[calc(100vh-220px)] w-full max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+      <main className="mx-auto min-h-[calc(100vh-180px)] w-full max-w-[1400px] px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6">{children}</main>
       <Footer locale={locale} messages={messages} />
     </div>
   );
