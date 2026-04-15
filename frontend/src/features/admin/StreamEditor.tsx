@@ -10,10 +10,20 @@ import type { HomeResponse } from "@/lib/api/types";
 
 import { StreamForm, type StreamFormValues } from "./StreamForm";
 
-export function StreamEditor({ locale, messages, externalId }: { locale: Locale; messages: Messages; externalId?: string }) {
+export function StreamEditor({
+  locale,
+  messages,
+  externalId,
+  initialMatchBuckets,
+}: {
+  locale: Locale;
+  messages: Messages;
+  externalId?: string;
+  initialMatchBuckets?: HomeResponse | null;
+}) {
   const router = useRouter();
   const [initialValues, setInitialValues] = useState<StreamFormValues | undefined>(undefined);
-  const [matchBuckets, setMatchBuckets] = useState<HomeResponse | null>(null);
+  const [matchBuckets, setMatchBuckets] = useState<HomeResponse | null>(initialMatchBuckets ?? null);
   const [loading, setLoading] = useState(Boolean(externalId));
   const [error, setError] = useState<string | null>(null);
 
@@ -38,10 +48,14 @@ export function StreamEditor({ locale, messages, externalId }: { locale: Locale;
   }, [externalId, messages.loadFailed]);
 
   useEffect(() => {
+    if (initialMatchBuckets) {
+      return;
+    }
+
     getHomePageData(locale)
       .then((response) => setMatchBuckets(response))
       .catch(() => setMatchBuckets(null));
-  }, [locale]);
+  }, [initialMatchBuckets, locale]);
 
   if (loading) {
     return <div className="text-[#f4bb41]">{messages.loading}</div>;

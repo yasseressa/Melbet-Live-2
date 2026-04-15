@@ -10,9 +10,17 @@ import { getAdminToken } from "@/lib/auth";
 import { getHomePageData, getStreams } from "@/lib/api";
 import type { HomeResponse, StreamLink } from "@/lib/api/types";
 
-export function StreamsPage({ locale, messages }: { locale: Locale; messages: Messages }) {
+export function StreamsPage({
+  locale,
+  messages,
+  initialMatchBuckets,
+}: {
+  locale: Locale;
+  messages: Messages;
+  initialMatchBuckets?: HomeResponse | null;
+}) {
   const [items, setItems] = useState<StreamLink[]>([]);
-  const [matchBuckets, setMatchBuckets] = useState<HomeResponse | null>(null);
+  const [matchBuckets, setMatchBuckets] = useState<HomeResponse | null>(initialMatchBuckets ?? null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,10 +38,14 @@ export function StreamsPage({ locale, messages }: { locale: Locale; messages: Me
   }, [messages.loadFailed]);
 
   useEffect(() => {
+    if (initialMatchBuckets) {
+      return;
+    }
+
     getHomePageData(locale)
       .then((response) => setMatchBuckets(response))
       .catch(() => setMatchBuckets(null));
-  }, [locale]);
+  }, [initialMatchBuckets, locale]);
 
   return (
     <div className="space-y-6">

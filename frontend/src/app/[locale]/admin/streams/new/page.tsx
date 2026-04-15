@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { StreamEditor } from "@/features/admin/StreamEditor";
 import { getMessages, isLocale } from "@/i18n";
+import { getHomePageData } from "@/lib/api";
 
 export default async function NewStreamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -10,5 +11,7 @@ export default async function NewStreamPage({ params }: { params: Promise<{ loca
   }
 
   const messages = await getMessages(locale);
-  return <StreamEditor locale={locale} messages={messages} />;
+  const initialMatchBuckets = await getHomePageData(locale).catch(() => null);
+
+  return <StreamEditor locale={locale} messages={messages} initialMatchBuckets={initialMatchBuckets} />;
 }
