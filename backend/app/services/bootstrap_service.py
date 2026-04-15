@@ -17,14 +17,22 @@ async def ensure_bootstrap_admin() -> None:
         return
 
     async with SessionLocal() as session:
-        existing = await session.execute(
+        existing_result = await session.execute(
             select(AdminUser).where(
                 (AdminUser.username == settings.admin_bootstrap_username)
                 | (AdminUser.email == settings.admin_bootstrap_email)
             )
         )
-        if existing.scalar_one_or_none() is not None:
-            logger.info("bootstrap_admin_exists")
+        existing = existing_result.scalar_one_or_none()
+
+        if existing is not None:
+            existing.username = settings.admin_bootstrap_username
+            existing.email = settings.admin_bootstrap_email
+            existing.password_hash = get_password_hash(settings.admin_bootstrap_password)
+            existing.is_active = True
+            existing.is_superuser = True
+            await session.commit()
+            logger.info("bootstrap_admin_updated", extra={"username": settings.admin_bootstrap_username})
             return
 
         admin = AdminUser(
