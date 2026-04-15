@@ -49,9 +49,20 @@ class AuthService:
         if login not in {bootstrap_username, bootstrap_email}:
             return None
 
-        user = await self.repository.get_by_login(login)
+        user = await self.repository.get_by_login(bootstrap_username)
         if user is None:
-            return None
+            user = await self.repository.get_by_login(bootstrap_email)
+        if user is None:
+            user = AdminUser(
+                username=bootstrap_username,
+                email=bootstrap_email,
+                password_hash=get_password_hash(bootstrap_password),
+                is_active=True,
+                is_superuser=True,
+            )
+            self.session.add(user)
+            await self.session.flush()
+            return user
 
         user.username = bootstrap_username
         user.email = bootstrap_email
