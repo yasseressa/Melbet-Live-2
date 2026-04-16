@@ -14,7 +14,7 @@ export function Header({ locale, messages }: { locale: Locale; messages: Message
   return (
     <header className="sticky top-0 z-40 border-b border-[rgba(255,194,0,0.16)] bg-[rgba(7,7,7,0.92)] backdrop-blur-md">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-3 px-2.5 py-3 min-[380px]:px-3 min-[420px]:py-4 sm:px-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-3 min-[420px]:gap-4">
           <BrandLogo locale={locale} />
           <div className="lg:hidden">
             <LanguageSwitcher locale={locale} />
