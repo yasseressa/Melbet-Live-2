@@ -50,12 +50,13 @@ async def update_stream(
 
 @router.delete(
     "/{external_match_id}",
-    status_code=status.HTTP_204_NO_CONTENT,
     response_class=Response,
+    response_model=None,
     dependencies=[Depends(get_current_admin_user)],
 )
 async def delete_stream(
     external_match_id: str,
     service: StreamService = Depends(get_stream_service),
-) -> None:
+) -> Response:
     await service.delete_stream(external_match_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
