@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Response, status
 
 from app.api.deps import get_current_admin_user, get_redirect_service
 from app.schemas.redirect import RedirectCampaignCreate, RedirectCampaignListResponse, RedirectCampaignResponse, RedirectCampaignUpdate
@@ -39,7 +39,12 @@ async def update_redirect(
     return RedirectCampaignResponse.model_validate(campaign)
 
 
-@router.delete("/{redirect_id}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(get_current_admin_user)])
+@router.delete(
+    "/{redirect_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response,
+    dependencies=[Depends(get_current_admin_user)],
+)
 async def delete_redirect(
     redirect_id: str,
     service: RedirectService = Depends(get_redirect_service),

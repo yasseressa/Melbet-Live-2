@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Response, status
 
 from app.api.deps import get_current_admin_user, get_stream_service
 from app.schemas.stream import StreamLinkAdminResponse, StreamLinkCreate, StreamLinkListResponse, StreamLinkUpdate
@@ -48,7 +48,12 @@ async def update_stream(
     return StreamLinkAdminResponse.model_validate(stream)
 
 
-@router.delete("/{external_match_id}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(get_current_admin_user)])
+@router.delete(
+    "/{external_match_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response,
+    dependencies=[Depends(get_current_admin_user)],
+)
 async def delete_stream(
     external_match_id: str,
     service: StreamService = Depends(get_stream_service),
