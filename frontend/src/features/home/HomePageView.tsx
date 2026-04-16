@@ -24,7 +24,7 @@ export function HomePageView({ locale, messages, data }: { locale: Locale; messa
       >
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <SectionEyebrow title={messages.upcoming} accent={messages.matches} />
+            <SectionEyebrow locale={locale} title={messages.upcoming} accent={messages.matches} />
             <p className="mt-3 max-w-[38rem] text-sm leading-7 text-[#a9a39a] sm:text-base">
               {messages.matchesIntro}
             </p>
@@ -67,7 +67,7 @@ export function HomePageView({ locale, messages, data }: { locale: Locale; messa
         className="rounded-[1.45rem] border border-[rgba(255,194,0,0.14)] bg-[linear-gradient(180deg,#0a0a0a_0%,#070707_100%)] p-3.5 shadow-[0_18px_50px_rgba(0,0,0,0.34)] min-[380px]:p-4 min-[420px]:rounded-[1.7rem] min-[420px]:p-5 sm:p-6 lg:p-8"
       >
         <div>
-          <SectionEyebrow title={messages.latest} accent={messages.sportsNews} />
+          <SectionEyebrow locale={locale} title={messages.latest} accent={messages.sportsNews} />
           <p className="mt-3 max-w-[38rem] text-sm leading-7 text-[#a9a39a] sm:text-base">
             {messages.newsIntro}
           </p>
@@ -176,11 +176,21 @@ function TeamLogo({ src, alt }: { src?: string | null; alt: string }) {
   );
 }
 
-function SectionEyebrow({ title, accent }: { title: string; accent: string }) {
+function SectionEyebrow({ locale, title, accent }: { locale: Locale; title: string; accent: string }) {
+  const isArabic = locale === "ar";
+
   return (
     <div>
       <h2 className="text-[1.65rem] font-black uppercase leading-none tracking-[-0.04em] text-white min-[420px]:text-[2rem] sm:text-[2.5rem]">
-        {title} <span className="text-[#f1bc26]">{accent}</span>
+        {isArabic ? (
+          <>
+            <span className="text-[#f1bc26]">{accent}</span> {title}
+          </>
+        ) : (
+          <>
+            {title} <span className="text-[#f1bc26]">{accent}</span>
+          </>
+        )}
       </h2>
       <span className="mt-3 block h-[3px] w-16 bg-[#f1bc26]" />
     </div>
